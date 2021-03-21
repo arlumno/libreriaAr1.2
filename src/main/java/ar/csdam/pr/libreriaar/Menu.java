@@ -186,7 +186,7 @@ public class Menu {
     }
 
     /**
-     * Imprime el menu y pide
+     * Imprime el menu, pide que selecciones una opción y guarda la seleccion.     
      *
      * @throws Exception
      */
@@ -220,6 +220,11 @@ public class Menu {
 
     }
 
+    /**
+     * Para obtener la opcion seleccionada en el thisl. mostrar()
+     * @return tipo byte, tras mostrar el menú. indice array = (selección - 1)
+     * @throws Exception 
+     */
     public byte getSeleccion() throws Exception{
         if (intentos == 0){
             throw new Exception(Textos.NO_SELECCIONADO);
