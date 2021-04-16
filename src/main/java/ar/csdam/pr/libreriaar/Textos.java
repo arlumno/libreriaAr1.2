@@ -13,7 +13,7 @@ public class Textos {
     /* Menu.java*/    
     static final String INDICAR_OPCION = "\n<< Indica el nº de la opción >>";    
     static final String OPCION_SALIR = "\n0.- Salir";    
-    static final String EXC_SIN_OPCIONES = " El menú no contiene opciones";    
+    static final String EXC_SIN_OPCIONES = " El menú no contiene opciones y requiere respuesta";    
     static final String NO_SELECCIONADO = "No se ha realizado ninguna selección";    
     
     static String cabeceraMenu(String tituloMenu){

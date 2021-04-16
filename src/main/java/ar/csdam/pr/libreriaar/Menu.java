@@ -214,6 +214,7 @@ public class Menu {
             if (isSalir()) {
                 seleccion = 0;
             } else {
+                // esto ocurre cuando se intenta imprimir un menú vació, con respuesta obligatoria (que no tiene opción de salir)
                 throw new Exception(Textos.EXC_SIN_OPCIONES);
             }
         }
