@@ -188,7 +188,7 @@ public class Menu {
     /**
      * Imprime el menu, pide que selecciones una opción y guarda la seleccion.     
      *
-     * @throws Exception
+     * @throws Exception. Ocurre cuando se intenta imprimir un menú vació, con respuesta obligatoria (que no tiene opción de salir)
      */
     public void mostrar() throws Exception {
         //se imprime a partir del primer intento del menú.
@@ -224,7 +224,7 @@ public class Menu {
     /**
      * Para obtener la opcion seleccionada en el thisl. mostrar()
      * @return tipo byte, tras mostrar el menú. indice array = (selección - 1)
-     * @throws Exception 
+     * @throws Exception, Cuando no se ha seleccionado anteriormente.
      */
     public byte getSeleccion() throws Exception{
         if (intentos == 0){

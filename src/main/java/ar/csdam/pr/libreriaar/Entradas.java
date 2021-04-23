@@ -281,4 +281,43 @@ public class Entradas {
     public static String pedirString(Scanner lector, int valorMax) {
         return pedirString(lector, valorMax, 0);
     }
+
+    /**
+     * Pide por consola escribrir entre dos textos, para devolver TRUE o FALSE
+     * Sigue pidiendo el texto hasta que coincida.
+     * 
+     * @param lector - objeto scanner
+     * @param si texto para TRUE, por defecto "SI"
+     * @param no texto para FALSE, por defecto "NO"
+     * @return TRUE o FALSE
+     */
+    public static boolean pedirBoolean(Scanner lector, String si, String no) {
+        String texto = "";
+        boolean resultado = false;
+        boolean fin = false;
+        do {
+            texto = lector.nextLine();
+            if (texto.equals(si)) {
+                resultado = true;
+            } else if (texto.equals(no)) {
+                resultado = true;
+            } else {
+                Salidas.errorReintentarIntroducir();
+            }
+
+        } while (!fin);
+        return resultado;
+    }
+
+    /**
+     * Pide por consola escribrir entre dos textos, para devolver TRUE o FALSE
+     * texto "SI" para TRUE y "NO" para FALSE
+     * Sigue pidiendo el texto hasta que coincida.
+     * 
+     * @param lector - objeto scanner
+     * @return TRUE o FALSE
+     */
+    public static boolean pedirBoolean(Scanner lector) {
+        return pedirBoolean(lector, "SI", "NO");
+    }
 }
