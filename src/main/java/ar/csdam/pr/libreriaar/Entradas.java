@@ -284,11 +284,11 @@ public class Entradas {
 
     /**
      * Pide por consola escribrir entre dos textos, para devolver TRUE o FALSE
-     * Sigue pidiendo el texto hasta que coincida.
+     * Sigue pidiendo el texto hasta que coincida. Insensible a mayúsculas y minúsculas
      * 
      * @param lector - objeto scanner
-     * @param si texto para TRUE, por defecto "SI"
-     * @param no texto para FALSE, por defecto "NO"
+     * @param si texto para TRUE, por defecto "SI", insensible a mayúsculas
+     * @param no texto para FALSE, por defecto "NO", insensible a mayúsculas
      * @return TRUE o FALSE
      */
     public static boolean pedirBoolean(Scanner lector, String si, String no) {
@@ -297,9 +297,10 @@ public class Entradas {
         boolean fin = false;
         do {
             texto = lector.nextLine();
-            if (texto.equals(si)) {
+            texto = texto.toUpperCase();
+            if (texto.equals(si.toUpperCase())) {
                 resultado = true;
-            } else if (texto.equals(no)) {
+            } else if (texto.equals(no.toUpperCase())) {
                 resultado = true;
             } else {
                 Salidas.errorReintentarIntroducir();
