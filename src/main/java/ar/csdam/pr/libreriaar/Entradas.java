@@ -294,15 +294,16 @@ public class Entradas {
     public static boolean pedirBoolean(Scanner lector, String si, String no) {
         String texto = "";
         boolean resultado = false;
-        boolean fin = false;
+        boolean fin = true;
         do {
             texto = lector.nextLine();
             texto = texto.toUpperCase();
             if (texto.equals(si.toUpperCase())) {
                 resultado = true;
             } else if (texto.equals(no.toUpperCase())) {
-                resultado = true;
+                resultado = false;
             } else {
+                fin = false;
                 Salidas.errorReintentarIntroducir();
             }
 
