@@ -5,9 +5,20 @@
  */
 package ar.csdam.pr.libreriaar;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Scanner;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 /**
  * Imprime un menún según los parametros proporcionados
@@ -20,7 +31,7 @@ public class Menu {
     private ArrayList<String> opcionesArray = new ArrayList<String>();
     private ArrayList<String> descripcionOpcionesArray = new ArrayList<String>();
     private Scanner lector;
-    private StringBuilder menu = new StringBuilder();
+    private StringBuilder menuString = new StringBuilder();
     private String tituloMenu = "";
     private boolean salir = true;
     private boolean descripcion = true;
@@ -51,7 +62,7 @@ public class Menu {
     }
 
     /**
-     * @param salir Indica si hay la opción de salir del menu.
+     * @param salir Indica si hay la opción de salir del menuString.
      */
     public void setSalir(boolean salir) {
         this.salir = salir;
@@ -66,7 +77,7 @@ public class Menu {
     }
 
     /**
-     * Cambia el titulo del menu, por defecto no tiene.
+     * Cambia el titulo del menuString, por defecto no tiene.
      *
      * @param tituloMenu
      */
@@ -138,29 +149,29 @@ public class Menu {
     }
 
     /**
-     * Genera el menu en función de los opciones.
+     * Genera el menuString en función de los opciones.
      */
     private void construirMenu() {
         //Construimos y guardamos el menú
-        menu.append(Textos.cabeceraMenu(tituloMenu));
+        menuString.append(Textos.cabeceraMenu(tituloMenu));
         for (int i = 0; i < nOpciones; i++) {
-            menu.append("\n");
-            menu.append(i + 1); //la opcion es = al indice del array + 1
-            menu.append(".- ");
-            menu.append(opcionesArray.get(i));
+            menuString.append("\n");
+            menuString.append(i + 1); //la opcion es = al indice del array + 1
+            menuString.append(".- ");
+            menuString.append(opcionesArray.get(i));
             if (isDescripcion() && descripcionOpcionesArray.get(i) != "") {
-                menu.append("\n\t");
-                menu.append(descripcionOpcionesArray.get(i));
+                menuString.append("\n\t");
+                menuString.append(descripcionOpcionesArray.get(i));
             }
         }
         if (isSalir()) {
-            menu.append(Textos.OPCION_SALIR);
+            menuString.append(Textos.OPCION_SALIR);
         }
-        menu.append(Textos.INDICAR_OPCION);
+        menuString.append(Textos.INDICAR_OPCION);
     }
 
     private void borrarMenu() {
-        menu = new StringBuilder();
+        menuString = new StringBuilder();
     }
 
     /**
@@ -178,7 +189,7 @@ public class Menu {
             Salidas.errorMenuVacio();
             resultado = false;
         } else {
-            if (menu.length() == 0) {
+            if (menuString.length() == 0) {
                 construirMenu();
             }
         }
@@ -186,10 +197,70 @@ public class Menu {
     }
 
     /**
-     * Imprime el menu, pide que selecciones una opción y guarda la seleccion.     
+     * Imprime el menuString, pide que selecciones una opción y guarda la seleccion.     
      *
      * @throws Exception. Ocurre cuando se intenta imprimir un menú vació, con respuesta obligatoria (que no tiene opción de salir)
      */
+    public void mostrarGUI() throws Exception {
+//        JDialog popi = new JDialog();
+        JFrame menuGUI = new JFrame();
+//        JPanel panel = new JPanel();
+        JButton opcion = new JButton();       
+        LinkedList <JButton> botones  = new LinkedList <JButton>();
+        int alturaBoton = 40;
+        int anchoBoton = 400;
+        int margenBoton = 15;
+        
+        Toolkit elToolkit = Toolkit.getDefaultToolkit();
+        Dimension screen = elToolkit.getScreenSize();        
+
+        menuGUI.setTitle(tituloMenu);       
+        menuGUI.setLayout(null);
+        menuGUI.setResizable(false);
+        menuGUI.setSize(margenBoton + anchoBoton + margenBoton +15,20+ margenBoton + (nOpciones * (alturaBoton + margenBoton)) + margenBoton);
+        
+        
+        int y = margenBoton;
+        for (int i = 0; i < nOpciones; i++) {   
+            
+            opcion = new JButton(opcionesArray.get(i));
+            opcion.setSize(anchoBoton, alturaBoton);
+            opcion.setLocation(margenBoton, y);
+            
+            opcion.addActionListener( new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e){
+                    System.out.println("test " + i);
+                }
+            });
+//            botones.addLast(new JButton(opcionesArray.get(i)));            
+//            botones.getLast().setSize(anchoBoton, alturaBoton);
+//            botones.getLast().setLocation(margenBoton, y);
+            
+            //botones.getLast().setBounds(15,y,200,alturaBoton);
+            menuGUI.add(opcion);
+            y += alturaBoton + margenBoton;
+        }            
+        menuGUI.setVisible(true);
+        
+        
+        
+//        if (validarMenu()) {            
+//            //lanzamos GUI
+//            System.out.println(menuString);
+//            
+//            //seleccion = Entradas.pedirByte(lector, (byte) 0, nOpciones);
+//            //pulsar opcion
+//           
+//        } else {
+//            if (isSalir()) {
+//                seleccion = 0;
+//            } else {
+//                // esto ocurre cuando se intenta imprimir un menú vació, con respuesta obligatoria (que no tiene opción de salir)
+//                throw new Exception(Textos.EXC_SIN_OPCIONES);
+//            }
+//        }
+    }
     public void mostrar() throws Exception {
         //se imprime a partir del primer intento del menú.
         if (validarMenu()) {
@@ -200,7 +271,7 @@ public class Menu {
                 lector.nextLine();
             }
             //imprimimos el menú
-            System.out.println(menu);
+            System.out.println(menuString);
             seleccion = Entradas.pedirByte(lector, (byte) 0, nOpciones);
 
             if (seleccion == 0) {

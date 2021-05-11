@@ -22,7 +22,7 @@ public class Test {
         Menu menu = construirMenuPrincipal(lector);
         do {
             try {
-                continuar = menuAcciones(menu, lector);
+                continuar = menuAcciones(menu);
             } catch (Exception e) {
                 System.out.println("Error: " + e);
             }
@@ -33,18 +33,35 @@ public class Test {
 
     private static Menu construirMenuPrincipal(Scanner lector) {
         Menu menu = new Menu(lector);
-        menu.setTituloMenu("Ejemplo Menu");
-        menu.addOpcion("OPCION 1");
-        menu.addOpcion("OPCION 2");
-        menu.addOpcion("OPCION 3");
-        menu.addOpcion("OPCION 4");
-        menu.addOpcion("OPCION 5");
-        menu.addOpcion("OPCION 6");
+        
+        menu.setTituloMenu("Menú Vacunas");
+        menu.addOpcion("Listar todas las vacunas y mostrar todos sus datos");
+        menu.addOpcion("Buscar vacuna");
+        menu.addOpcion("Agregar vacuna");
+        menu.addOpcion("Eliminar vacuna");
+        menu.addOpcion("Introducir resultado de las fases de la vacuna");
+        menu.addOpcion("Autorizar/Rechazar vacuna");
+        menu.addOpcion("Ver vacunas autorizadas");
+        menu.addOpcion("Ver vacunas rechazadas");
+        menu.addOpcion("Ver vacunas pendientes de autorizar/rechazar");
+        menu.addOpcion("Ver la última fase investigada de cada vacuna almacenada");
+        menu.addOpcion("Cargar Vacunas de ejemplo");
+        menu.addOpcion("Comprueba si un código es Valido");
+        menu.addOpcion("AYUDA / INSTRUCCIONES");
+    
+//        menu.setTituloMenu("Ejemplo Menu");
+//        menu.addOpcion("OPCION 1");
+//        menu.addOpcion("OPCION 2");
+//        menu.addOpcion("OPCION 3");
+//        menu.addOpcion("OPCION 4");
+//        menu.addOpcion("OPCION 5");
+//        menu.addOpcion("OPCION 6");
         return menu;
     }
 
-    private static boolean menuAcciones(Menu menu, Scanner lector) throws Exception {
+    private static boolean menuAcciones(Menu menu) throws Exception {
         boolean continuar = true;
+        menu.mostrarGUI();
         menu.mostrar();
         switch (menu.getSeleccion()) {
             case 0:

@@ -5,18 +5,39 @@
  */
 package ar.csdam.pr.libreriaar;
 
-import java.util.ArrayList;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 /**
  *
  * @author a20armandocb
  */
-public class GUI {
+public class GUI  extends JFrame{
       
-    public GUI(int nOpciones, ArrayList<String> opcionesArray, ArrayList<String> descripcionOpcionesArray){
+    JButton boton;
+    public GUI(){
+        setLayout(null);
         
+        boton = new JButton("Estoy en mi posición");
+        boton.setBounds(30,5,160,20);
+        add(boton);
+        
+        setVisible(true);
+
+        Toolkit elToolkit = Toolkit.getDefaultToolkit();
+        Dimension laPantalla = elToolkit.getScreenSize();        
+        
+        int h = 100;
+        setBounds(5,laPantalla.height - h -40 ,laPantalla.width - 10,h);
+        setTitle("probandoSwing02");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    /**
+}
+
+        
+      /**
      * Version de consola 
      */
 //    private void construirMenu() {
