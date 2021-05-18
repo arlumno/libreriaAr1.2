@@ -58,4 +58,4 @@ public class GUI  extends JFrame{
 //        }
 //        menu.append(Textos.INDICAR_OPCION);
 //    }
-}
+//}

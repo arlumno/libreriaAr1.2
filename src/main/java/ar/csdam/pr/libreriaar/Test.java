@@ -62,7 +62,7 @@ public class Test {
     private static boolean menuAcciones(Menu menu) throws Exception {
         boolean continuar = true;
         menu.mostrarGUI();
-        menu.mostrar();
+        //menu.mostrar();
         switch (menu.getSeleccion()) {
             case 0:
                 //salir
@@ -85,6 +85,9 @@ public class Test {
                 break;
             case 6:
                 System.out.println("Ha seleccionado la opción 6");
+                break;
+            default:
+                System.out.println("opcion incorrecta");
                 break;
 
         }

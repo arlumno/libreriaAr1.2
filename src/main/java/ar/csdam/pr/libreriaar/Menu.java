@@ -5,6 +5,7 @@
  */
 package ar.csdam.pr.libreriaar;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -38,6 +39,7 @@ public class Menu {
     private byte nOpciones = 0;
     private byte seleccion;
     private int intentos = 0;
+    private boolean pausarEjecucion = false;
 
     /**
      * Menú de opciones. Limitado a 127 opciones. Se reserva el 0 para salir.
@@ -202,27 +204,30 @@ public class Menu {
      * @throws Exception. Ocurre cuando se intenta imprimir un menú vació, con respuesta obligatoria (que no tiene opción de salir)
      */
     public void mostrarGUI() throws Exception {
-//        JDialog popi = new JDialog();
         JFrame menuGUI = new JFrame();
-//        JPanel panel = new JPanel();
         JButton opcion = new JButton();       
-        LinkedList <JButton> botones  = new LinkedList <JButton>();
+        int nBotones;
+        if(salir){
+            nBotones = nOpciones + 2;
+        }else{
+            nBotones = nOpciones ;            
+        }
         int alturaBoton = 40;
         int anchoBoton = 400;
         int margenBoton = 15;
         
         Toolkit elToolkit = Toolkit.getDefaultToolkit();
-        Dimension screen = elToolkit.getScreenSize();        
+    //    Dimension screen = elToolkit.getScreenSize();        
 
         menuGUI.setTitle(tituloMenu);       
         menuGUI.setLayout(null);
         menuGUI.setResizable(false);
-        menuGUI.setSize(margenBoton + anchoBoton + margenBoton +15,20+ margenBoton + (nOpciones * (alturaBoton + margenBoton)) + margenBoton);
-        
-        
+        menuGUI.setSize(margenBoton + anchoBoton + margenBoton +15,20+ margenBoton + (nBotones * (alturaBoton + margenBoton)) + margenBoton);
+        menuGUI.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        menuGUI.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         int y = margenBoton;
         for (int i = 0; i < nOpciones; i++) {   
-            
+            final int j = i;
             opcion = new JButton(opcionesArray.get(i));
             opcion.setSize(anchoBoton, alturaBoton);
             opcion.setLocation(margenBoton, y);
@@ -230,19 +235,38 @@ public class Menu {
             opcion.addActionListener( new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e){
-                    System.out.println("test " + i);
+                    seleccion = (byte) (j +1);
+                    menuGUI.dispose();
+                    pausarEjecucion = false;
                 }
-            });
-//            botones.addLast(new JButton(opcionesArray.get(i)));            
-//            botones.getLast().setSize(anchoBoton, alturaBoton);
-//            botones.getLast().setLocation(margenBoton, y);
-            
-            //botones.getLast().setBounds(15,y,200,alturaBoton);
+            });            
             menuGUI.add(opcion);
             y += alturaBoton + margenBoton;
-        }            
-        menuGUI.setVisible(true);
+        }   
+        if(salir){
+            opcion = new JButton("EXIT");
+            opcion.setSize(anchoBoton, alturaBoton);
+            opcion.setLocation(margenBoton, (y + alturaBoton));
+            opcion.setBackground(Color.red);
+            
+            opcion.addActionListener( new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e){
+                    seleccion = 0;
+                    menuGUI.dispose();
+                    pausarEjecucion = false;
+                }
+            });            
+            menuGUI.add(opcion);
+        }
         
+        menuGUI.setVisible(true);
+        intentos++;
+        pausarEjecucion = true;
+        while(pausarEjecucion){
+             //pausamos la ejecución del programa hasta que se asigne una respuesta.
+             Thread.sleep(500); //para reducir la carga del bucle se pase.         
+        }
         
         
 //        if (validarMenu()) {            
