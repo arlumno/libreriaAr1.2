@@ -41,21 +41,10 @@ public class Test {
         menu.addOpcion("Eliminar vacuna");
         menu.addOpcion("Introducir resultado de las fases de la vacuna");
         menu.addOpcion("Autorizar/Rechazar vacuna");
-        menu.addOpcion("Ver vacunas autorizadas");
-        menu.addOpcion("Ver vacunas rechazadas");
-        menu.addOpcion("Ver vacunas pendientes de autorizar/rechazar");
-        menu.addOpcion("Ver la última fase investigada de cada vacuna almacenada");
-        menu.addOpcion("Cargar Vacunas de ejemplo");
-        menu.addOpcion("Comprueba si un código es Valido");
         menu.addOpcion("AYUDA / INSTRUCCIONES");
+        menu.addOpcion("Opción no declarada.");
     
-//        menu.setTituloMenu("Ejemplo Menu");
-//        menu.addOpcion("OPCION 1");
-//        menu.addOpcion("OPCION 2");
-//        menu.addOpcion("OPCION 3");
-//        menu.addOpcion("OPCION 4");
-//        menu.addOpcion("OPCION 5");
-//        menu.addOpcion("OPCION 6");
+
         return menu;
     }
 
@@ -67,6 +56,7 @@ public class Test {
             case 0:
                 //salir
                 continuar = false;
+                System.out.println("Bye Bye!");
                 break;
             case 1:
                 System.out.println("Ha seleccionado la opción 1");
