@@ -267,23 +267,7 @@ public class Menu {
              //pausamos la ejecución del programa hasta que se asigne una respuesta.
              Thread.sleep(500); //para reducir la carga del bucle se pase.         
         }
-        
-        
-//        if (validarMenu()) {            
-//            //lanzamos GUI
-//            System.out.println(menuString);
-//            
-//            //seleccion = Entradas.pedirByte(lector, (byte) 0, nOpciones);
-//            //pulsar opcion
-//           
-//        } else {
-//            if (isSalir()) {
-//                seleccion = 0;
-//            } else {
-//                // esto ocurre cuando se intenta imprimir un menú vació, con respuesta obligatoria (que no tiene opción de salir)
-//                throw new Exception(Textos.EXC_SIN_OPCIONES);
-//            }
-//        }
+               
     }
     public void mostrar() throws Exception {
         //se imprime a partir del primer intento del menú.

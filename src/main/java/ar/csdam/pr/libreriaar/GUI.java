@@ -36,26 +36,3 @@ public class GUI  extends JFrame{
     }
 }
 
-        
-      /**
-     * Version de consola 
-     */
-//    private void construirMenu() {
-//        //Construimos y guardamos el menú
-//        menu.append(Textos.cabeceraMenu(tituloMenu));
-//        for (int i = 0; i < nOpciones; i++) {
-//            menu.append("\n");
-//            menu.append(i + 1); //la opcion es = al indice del array + 1
-//            menu.append(".- ");
-//            menu.append(opcionesArray.get(i));
-//            if (isDescripcion() && descripcionOpcionesArray.get(i) != "") {
-//                menu.append("\n\t");
-//                menu.append(descripcionOpcionesArray.get(i));
-//            }
-//        }
-//        if (isSalir()) {
-//            menu.append(Textos.OPCION_SALIR);
-//        }
-//        menu.append(Textos.INDICAR_OPCION);
-//    }
-//}
