@@ -5,8 +5,11 @@
  */
 package ar.csdam.pr.libreriaar;
 
+import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  * Conjunto de metodos para para trabajar en clase de DAM.
@@ -284,8 +287,9 @@ public class Entradas {
 
     /**
      * Pide por consola escribrir entre dos textos, para devolver TRUE o FALSE
-     * Sigue pidiendo el texto hasta que coincida. Insensible a mayúsculas y minúsculas
-     * 
+     * Sigue pidiendo el texto hasta que coincida. Insensible a mayúsculas y
+     * minúsculas
+     *
      * @param lector - objeto scanner
      * @param si texto para TRUE, por defecto "SI", insensible a mayúsculas
      * @param no texto para FALSE, por defecto "NO", insensible a mayúsculas
@@ -313,13 +317,48 @@ public class Entradas {
 
     /**
      * Pide por consola escribrir entre dos textos, para devolver TRUE o FALSE
-     * texto "SI" para TRUE y "NO" para FALSE
-     * Sigue pidiendo el texto hasta que coincida.
-     * 
+     * texto "SI" para TRUE y "NO" para FALSE Sigue pidiendo el texto hasta que
+     * coincida.
+     *
      * @param lector - objeto scanner
      * @return TRUE o FALSE
      */
     public static boolean pedirBoolean(Scanner lector) {
         return pedirBoolean(lector, "SI", "NO");
+    }
+    
+    /**
+     * 
+     * @param archivos true para admitir archivos
+     * @param directorios true para admitir directorios
+     * @return devuelve archivo tipo File
+     */
+    public static File pedirArchivo(boolean archivos, boolean directorios) {
+        String resultado = "";
+        boolean fin = false;
+        JFileChooser selector = new JFileChooser();
+        if(archivos && directorios){
+                selector.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+                selector.setDialogTitle("Selecciona un Archivo o Directorio");
+        }else if(archivos){
+                selector.setFileSelectionMode(JFileChooser.FILES_ONLY);            
+                selector.setDialogTitle("Selecciona un Archivo");
+        }else if(directorios){
+                selector.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);            
+                selector.setDialogTitle("Selecciona un Directorio");
+        }
+                
+        File archivo;
+        do {
+            selector.showOpenDialog(selector);
+            archivo = selector.getSelectedFile();
+            
+            if ((archivo == null) || archivo.getName().equals("")) {
+                 Salidas.errorVacio();
+            } else {
+                fin = true;
+            }
+        } while (!fin);
+        return archivo;
     }
 }
