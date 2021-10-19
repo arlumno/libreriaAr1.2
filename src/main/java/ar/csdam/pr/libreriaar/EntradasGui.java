@@ -17,9 +17,10 @@ import javax.swing.JOptionPane;
  * @author a20armandocb
  */
 public class EntradasGui {
+
     /**
-     * Pide por GUI un valor del tipo y rango especificado. valorMin y
-     * valorMax opcionales.
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y valorMax
+     * opcionales.
      *
      * @param mensaje - texto de la ventana
      * @param valorMin - valor mínimo, opcional
@@ -31,12 +32,17 @@ public class EntradasGui {
         boolean fin = false;
         do {
             try {
-                resultado = Byte.parseByte(JOptionPane.showInputDialog(mensaje));
-                if (resultado < valorMin || resultado > valorMax) {
-                    Salidas.errorFueraRango();
+                String aux = JOptionPane.showInputDialog(mensaje);
+                if (aux == null) {
                     Salidas.errorReintentarIntroducir();
                 } else {
-                    fin = true;
+                    resultado = Byte.parseByte(aux);
+                    if (resultado < valorMin || resultado > valorMax) {
+                        Salidas.errorFueraRango();
+                        Salidas.errorReintentarIntroducir();
+                    } else {
+                        fin = true;
+                    }
                 }
             } catch (InputMismatchException error) {
                 Salidas.errorTipo();
@@ -69,8 +75,8 @@ public class EntradasGui {
     }
 
     /**
-     * Pide por GUI un valor del tipo y rango especificado. valorMin y
-     * valorMax opcionales.
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y valorMax
+     * opcionales.
      *
      * @param mensaje - texto de la ventana
      * @param valorMin - valor mínimo, opcional
@@ -82,13 +88,18 @@ public class EntradasGui {
         boolean fin = false;
         do {
             try {
-                resultado = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
-
-                if (resultado < valorMin || resultado > valorMax) {
-                    Salidas.errorFueraRango();
+                String aux = JOptionPane.showInputDialog(mensaje);
+                if (aux == null) {
                     Salidas.errorReintentarIntroducir();
                 } else {
-                    fin = true;
+                    resultado = Integer.parseInt(aux);
+
+                    if (resultado < valorMin || resultado > valorMax) {
+                        Salidas.errorFueraRango();
+                        Salidas.errorReintentarIntroducir();
+                    } else {
+                        fin = true;
+                    }
                 }
             } catch (InputMismatchException error) {
                 Salidas.errorTipo();
@@ -120,8 +131,8 @@ public class EntradasGui {
     }
 
     /**
-     * Pide por GUI un valor del tipo y rango especificado. valorMin y
-     * valorMax opcionales.
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y valorMax
+     * opcionales.
      *
      * @param mensaje - texto de la ventana
      * @param valorMin - valor mínimo, opcional
@@ -133,13 +144,17 @@ public class EntradasGui {
         boolean fin = false;
         do {
             try {
-                resultado = Long.parseLong(JOptionPane.showInputDialog(mensaje));
-
-                if (resultado < valorMin || resultado > valorMax) {
-                    Salidas.errorFueraRango();
+                String aux = JOptionPane.showInputDialog(mensaje);
+                if (aux == null) {
                     Salidas.errorReintentarIntroducir();
                 } else {
-                    fin = true;
+                    resultado = Long.parseLong(aux);
+                    if (resultado < valorMin || resultado > valorMax) {
+                        Salidas.errorFueraRango();
+                        Salidas.errorReintentarIntroducir();
+                    } else {
+                        fin = true;
+                    }
                 }
             } catch (InputMismatchException error) {
                 Salidas.errorTipo();
@@ -171,8 +186,8 @@ public class EntradasGui {
     }
 
     /**
-     * Pide por GUI un valor del tipo y rango especificado. valorMin y
-     * valorMax opcionales.
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y valorMax
+     * opcionales.
      *
      * @param mensaje - texto de la ventana
      * @param valorMin - valor mínimo, opcional
@@ -184,12 +199,17 @@ public class EntradasGui {
         boolean fin = false;
         do {
             try {
-                resultado = Double.parseDouble(JOptionPane.showInputDialog(mensaje));
-                if (resultado < valorMin || resultado > valorMax) {
-                    Salidas.errorFueraRango();
+                String aux = JOptionPane.showInputDialog(mensaje);
+                if (aux == null) {
                     Salidas.errorReintentarIntroducir();
                 } else {
-                    fin = true;
+                    resultado = Double.parseDouble(aux);
+                    if (resultado < valorMin || resultado > valorMax) {
+                        Salidas.errorFueraRango();
+                        Salidas.errorReintentarIntroducir();
+                    } else {
+                        fin = true;
+                    }
                 }
             } catch (InputMismatchException error) {
                 Salidas.errorTipo();
@@ -198,7 +218,7 @@ public class EntradasGui {
         } while (!fin);
         return resultado;
     }
-    
+
     /**
      * Metodo valorMin especificado y valorMax con máximo valor por defecto
      *
@@ -222,8 +242,8 @@ public class EntradasGui {
     }
 
     /**
-     * Pide por GUI un valor del tipo y rango especificado. valorMin y
-     * valorMax opcionales.
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y valorMax
+     * opcionales.
      *
      * @param mensaje - texto de la ventana
      * @param valorMax - Longitud máxima del String
@@ -235,17 +255,21 @@ public class EntradasGui {
         String resultado = "";
         boolean fin = false;
         do {
-            try {                
+            try {
                 resultado = JOptionPane.showInputDialog(mensaje);
-                if (resultado.length() < valorMin || (valorMax != null && resultado.length() > valorMax)) {
-                    if (valorMax == null) {
-                        Salidas.errorVacio();
-                    } else {
-                        Salidas.errorFueraRango();
-                    }
+                if (resultado == null) {
                     Salidas.errorReintentarIntroducir();
                 } else {
-                    fin = true;
+                    if (resultado.length() < valorMin || (valorMax != null && resultado.length() > valorMax)) {
+                        if (valorMax == null) {
+                            Salidas.errorVacio();
+                        } else {
+                            Salidas.errorFueraRango();
+                        }
+                        Salidas.errorReintentarIntroducir();
+                    } else {
+                        fin = true;
+                    }
                 }
             } catch (InputMismatchException error) {
                 Salidas.errorTipo();
@@ -277,8 +301,8 @@ public class EntradasGui {
     }
 
     /**
-     * Pide por GUI escribrir entre dos textos, para devolver TRUE o FALSE
-     * Sigue pidiendo el texto hasta que coincida. Insensible a mayúsculas y
+     * Pide por GUI escribrir entre dos textos, para devolver TRUE o FALSE Sigue
+     * pidiendo el texto hasta que coincida. Insensible a mayúsculas y
      * minúsculas
      *
      * @param mensaje - texto de la ventana
@@ -291,23 +315,23 @@ public class EntradasGui {
         boolean resultado = false;
         boolean fin = true;
         do {
-            texto = texto.toUpperCase();
-            if (texto.equals(si.toUpperCase())) {
-                resultado = true;
-            } else if (texto.equals(no.toUpperCase())) {
-                resultado = false;
-            } else {
-                fin = false;
-                Salidas.errorReintentarIntroducir();
-            }
-
+            int aux = JOptionPane.showConfirmDialog(null, mensaje,null,JOptionPane.YES_NO_OPTION);
+           
+                if (aux == 0) {
+                    resultado = true;
+                } else if (aux == 1 || aux == 2) { // 1 es No y 2 Cancelar
+                    resultado = false;
+                } else {
+                    fin = false;
+                    Salidas.errorReintentarIntroducir();
+                }
         } while (!fin);
         return resultado;
     }
 
     /**
-     * Pide por GUI escribrir entre dos textos, para devolver TRUE o FALSE
-     * texto "SI" para TRUE y "NO" para FALSE Sigue pidiendo el texto hasta que
+     * Pide por GUI escribrir entre dos textos, para devolver TRUE o FALSE texto
+     * "SI" para TRUE y "NO" para FALSE Sigue pidiendo el texto hasta que
      * coincida.
      *
      * @param mensaje - texto de la ventana
@@ -316,9 +340,10 @@ public class EntradasGui {
     public static boolean pedirBoolean(String mensaje) {
         return pedirBoolean(mensaje, "SI", "NO");
     }
-    
+
     /**
      * Gui para seleccionar archivos o directorios
+     *
      * @param archivos true para admitir archivos
      * @param directorios true para admitir directorios
      * @return devuelve archivo tipo File
@@ -327,28 +352,28 @@ public class EntradasGui {
         String resultado = "";
         boolean fin = false;
         JFileChooser selector = new JFileChooser();
-        if(archivos && directorios){
-                selector.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-                selector.setDialogTitle("Selecciona un Archivo o Directorio");
-        }else if(archivos){
-                selector.setFileSelectionMode(JFileChooser.FILES_ONLY);            
-                selector.setDialogTitle("Selecciona un Archivo");
-        }else if(directorios){
-                selector.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);            
-                selector.setDialogTitle("Selecciona un Directorio");
+        if (archivos && directorios) {
+            selector.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            selector.setDialogTitle("Selecciona un Archivo o Directorio");
+        } else if (archivos) {
+            selector.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            selector.setDialogTitle("Selecciona un Archivo");
+        } else if (directorios) {
+            selector.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            selector.setDialogTitle("Selecciona un Directorio");
         }
-                
+
         File archivo;
         do {
             selector.showOpenDialog(selector);
             archivo = selector.getSelectedFile();
-            
+
             if ((archivo == null) || archivo.getName().equals("")) {
-                 Salidas.errorVacio();
+                Salidas.errorVacio();
             } else {
                 fin = true;
             }
         } while (!fin);
         return archivo;
-    } 
+    }
 }

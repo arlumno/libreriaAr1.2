@@ -6,6 +6,7 @@
 package ar.csdam.pr.libreriaar;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
