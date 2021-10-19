@@ -16,23 +16,22 @@ import javax.swing.JOptionPane;
  *
  * @author a20armandocb
  */
-public class Entradas {
+public class EntradasGui {
     /**
-     * Pide por consola un valor del tipo y rango especificado. valorMin y
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y
      * valorMax opcionales.
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @param valorMin - valor mínimo, opcional
      * @param valorMax - valor máximo opcional, (requiere valorMin).
      * @return devuelve tipo byte
      */
-    public static byte pedirByte(Scanner lector, byte valorMin, byte valorMax) {
+    public static byte pedirByte(String mensaje, byte valorMin, byte valorMax) {
         byte resultado = 0;
         boolean fin = false;
         do {
             try {
-                resultado = lector.nextByte();
-                lector.nextLine();//limpiamos consola.
+                resultado = Byte.parseByte(JOptionPane.showInputDialog(mensaje));
                 if (resultado < valorMin || resultado > valorMax) {
                     Salidas.errorFueraRango();
                     Salidas.errorReintentarIntroducir();
@@ -42,7 +41,6 @@ public class Entradas {
             } catch (InputMismatchException error) {
                 Salidas.errorTipo();
                 Salidas.errorReintentarIntroducir();
-                lector.nextLine();//limpiamos consola.
             }
         } while (!fin);
         return resultado;
@@ -51,41 +49,41 @@ public class Entradas {
     /**
      * valorMax con máximo valor por defecto
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      *
      * @param valorMin - valor mínimo, opcional
      * @return devuelve tipo byte
      */
-    public static byte pedirByte(Scanner lector, byte valorMin) {
-        return pedirByte(lector, valorMin, Byte.MAX_VALUE);
+    public static byte pedirByte(String mensaje, byte valorMin) {
+        return pedirByte(mensaje, valorMin, Byte.MAX_VALUE);
     }
 
     /**
      * valorMin y valorMax con mínimo y máximo valor por defecto
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @return devuelve tipo byte
      */
-    public static byte pedirByte(Scanner lector) {
-        return pedirByte(lector, Byte.MIN_VALUE, Byte.MAX_VALUE);
+    public static byte pedirByte(String mensaje) {
+        return pedirByte(mensaje, Byte.MIN_VALUE, Byte.MAX_VALUE);
     }
 
     /**
-     * Pide por consola un valor del tipo y rango especificado. valorMin y
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y
      * valorMax opcionales.
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @param valorMin - valor mínimo, opcional
      * @param valorMax - valor máximo opcional, (requiere valorMin).
      * @return tipo int
      */
-    public static int pedirInt(Scanner lector, int valorMin, int valorMax) {
+    public static int pedirInt(String mensaje, int valorMin, int valorMax) {
         int resultado = 0;
         boolean fin = false;
         do {
             try {
-                resultado = lector.nextInt();
-                lector.nextLine();//limpiamos consola.
+                resultado = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
+
                 if (resultado < valorMin || resultado > valorMax) {
                     Salidas.errorFueraRango();
                     Salidas.errorReintentarIntroducir();
@@ -95,7 +93,6 @@ public class Entradas {
             } catch (InputMismatchException error) {
                 Salidas.errorTipo();
                 Salidas.errorReintentarIntroducir();
-                lector.nextLine();//limpiamos consola.
             }
         } while (!fin);
         return resultado;
@@ -104,40 +101,39 @@ public class Entradas {
     /**
      * valorMax con máximo valor por defecto
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @param valorMin - valor mínimo, opcional
      * @return tipo int
      */
-    public static int pedirInt(Scanner lector, int valorMin) {
-        return pedirInt(lector, valorMin, Integer.MAX_VALUE);
+    public static int pedirInt(String mensaje, int valorMin) {
+        return pedirInt(mensaje, valorMin, Integer.MAX_VALUE);
     }
 
     /**
      * valorMin y valorMax con mínimo y máximo valor por defecto
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @return tipo int
      */
-    public static int pedirInt(Scanner lector) {
-        return pedirInt(lector, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    public static int pedirInt(String mensaje) {
+        return pedirInt(mensaje, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     /**
-     * Pide por consola un valor del tipo y rango especificado. valorMin y
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y
      * valorMax opcionales.
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @param valorMin - valor mínimo, opcional
      * @param valorMax - valor máximo opcional, (requiere valorMin).
      * @return tipo long
      */
-    public static long pedirLong(Scanner lector, long valorMin, long valorMax) {
+    public static long pedirLong(String mensaje, long valorMin, long valorMax) {
         long resultado = 0;
         boolean fin = false;
         do {
             try {
-                resultado = lector.nextLong();
-                lector.nextLine();//limpiamos consola.
+                resultado = Long.parseLong(JOptionPane.showInputDialog(mensaje));
 
                 if (resultado < valorMin || resultado > valorMax) {
                     Salidas.errorFueraRango();
@@ -148,7 +144,6 @@ public class Entradas {
             } catch (InputMismatchException error) {
                 Salidas.errorTipo();
                 Salidas.errorReintentarIntroducir();
-                lector.nextLine();//limpiamos consola.
             }
         } while (!fin);
         return resultado;
@@ -157,40 +152,39 @@ public class Entradas {
     /**
      * valorMax con máximo valor por defecto
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @param valorMin - valor mínimo, opcional
      * @return tipo long
      */
-    public static long pedirLong(Scanner lector, long valorMin) {
-        return pedirLong(lector, valorMin, Long.MAX_VALUE);
+    public static long pedirLong(String mensaje, long valorMin) {
+        return pedirLong(mensaje, valorMin, Long.MAX_VALUE);
     }
 
     /**
      * valorMin y valorMax con mínimo y máximo valor por defecto
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @return tipo long
      */
-    public static long pedirLong(Scanner lector) {
-        return pedirLong(lector, Long.MIN_VALUE, Long.MAX_VALUE);
+    public static long pedirLong(String mensaje) {
+        return pedirLong(mensaje, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
     /**
-     * Pide por consola un valor del tipo y rango especificado. valorMin y
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y
      * valorMax opcionales.
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @param valorMin - valor mínimo, opcional
      * @param valorMax - valor máximo opcional, (requiere valorMin).
      * @return tipo double
      */
-    public static double pedirDouble(Scanner lector, double valorMin, double valorMax) {
+    public static double pedirDouble(String mensaje, double valorMin, double valorMax) {
         double resultado = 0;
         boolean fin = false;
         do {
             try {
-                resultado = lector.nextDouble();
-                lector.nextLine();//limpiamos consola.                
+                resultado = Double.parseDouble(JOptionPane.showInputDialog(mensaje));
                 if (resultado < valorMin || resultado > valorMax) {
                     Salidas.errorFueraRango();
                     Salidas.errorReintentarIntroducir();
@@ -200,7 +194,6 @@ public class Entradas {
             } catch (InputMismatchException error) {
                 Salidas.errorTipo();
                 Salidas.errorReintentarIntroducir();
-                lector.nextLine();//limpiamos consola.
             }
         } while (!fin);
         return resultado;
@@ -209,41 +202,41 @@ public class Entradas {
     /**
      * Metodo valorMin especificado y valorMax con máximo valor por defecto
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @param valorMin - valor mínimo, opcional
      * @return tipo double
      */
-    public static double pedirDouble(Scanner lector, double valorMin) {
-        return pedirDouble(lector, valorMin, Double.MAX_VALUE);
+    public static double pedirDouble(String mensaje, double valorMin) {
+        return pedirDouble(mensaje, valorMin, Double.MAX_VALUE);
     }
 
     /**
      * Metodo valorMin y valorMax con mínimo y máximo valor por defecto
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @return tipo double
      */
-    public static double pedirDouble(Scanner lector) {
+    public static double pedirDouble(String mensaje) {
         // el MIN_VALUE de double no es negativo, indica el numero POSITIVO mas pequeño con decimales
-        return pedirDouble(lector, Double.MAX_VALUE * -1, Double.MAX_VALUE);
+        return pedirDouble(mensaje, Double.MAX_VALUE * -1, Double.MAX_VALUE);
     }
 
     /**
-     * Pide por consola un valor del tipo y rango especificado. valorMin y
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y
      * valorMax opcionales.
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @param valorMax - Longitud máxima del String
      * @param valorMin - Longitud mínima del String, opcional (requiere
      * valorMax).
      * @return tipo String
      */
-    public static String pedirString(Scanner lector, Integer valorMax, int valorMin) {
+    public static String pedirString(String mensaje, Integer valorMax, int valorMin) {
         String resultado = "";
         boolean fin = false;
         do {
             try {                
-                resultado = lector.nextLine();
+                resultado = JOptionPane.showInputDialog(mensaje);
                 if (resultado.length() < valorMin || (valorMax != null && resultado.length() > valorMax)) {
                     if (valorMax == null) {
                         Salidas.errorVacio();
@@ -257,7 +250,6 @@ public class Entradas {
             } catch (InputMismatchException error) {
                 Salidas.errorTipo();
                 Salidas.errorReintentarIntroducir();
-                lector.nextLine();//limpiamos consola.
             }
         } while (!fin);
         return resultado;
@@ -266,40 +258,39 @@ public class Entradas {
     /**
      * Metodo valorMin y valorMax con mínimo y máximo valor por defecto
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @return tipo String
      */
-    public static String pedirString(Scanner lector) {
-        return pedirString(lector, null, 0);
+    public static String pedirString(String mensaje) {
+        return pedirString(mensaje, null, 0);
     }
 
     /**
      * Metodo valorMin y valorMax con mínimo y máximo valor por defecto
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @param valorMax - Longitud máxima del String
      * @return tipo String
      */
-    public static String pedirString(Scanner lector, int valorMax) {
-        return pedirString(lector, valorMax, 0);
+    public static String pedirString(String mensaje, int valorMax) {
+        return pedirString(mensaje, valorMax, 0);
     }
 
     /**
-     * Pide por consola escribrir entre dos textos, para devolver TRUE o FALSE
+     * Pide por GUI escribrir entre dos textos, para devolver TRUE o FALSE
      * Sigue pidiendo el texto hasta que coincida. Insensible a mayúsculas y
      * minúsculas
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @param si texto para TRUE, por defecto "SI", insensible a mayúsculas
      * @param no texto para FALSE, por defecto "NO", insensible a mayúsculas
      * @return TRUE o FALSE
      */
-    public static boolean pedirBoolean(Scanner lector, String si, String no) {
+    public static boolean pedirBoolean(String mensaje, String si, String no) {
         String texto = "";
         boolean resultado = false;
         boolean fin = true;
         do {
-            texto = lector.nextLine();
             texto = texto.toUpperCase();
             if (texto.equals(si.toUpperCase())) {
                 resultado = true;
@@ -315,15 +306,15 @@ public class Entradas {
     }
 
     /**
-     * Pide por consola escribrir entre dos textos, para devolver TRUE o FALSE
+     * Pide por GUI escribrir entre dos textos, para devolver TRUE o FALSE
      * texto "SI" para TRUE y "NO" para FALSE Sigue pidiendo el texto hasta que
      * coincida.
      *
-     * @param lector - objeto scanner
+     * @param mensaje - texto de la ventana
      * @return TRUE o FALSE
      */
-    public static boolean pedirBoolean(Scanner lector) {
-        return pedirBoolean(lector, "SI", "NO");
+    public static boolean pedirBoolean(String mensaje) {
+        return pedirBoolean(mensaje, "SI", "NO");
     }
     
     /**
