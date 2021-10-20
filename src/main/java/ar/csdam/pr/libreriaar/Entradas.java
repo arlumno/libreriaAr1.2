@@ -327,38 +327,4 @@ public class Entradas {
         return pedirBoolean(lector, "SI", "NO");
     }
     
-    /**
-     * Gui para seleccionar archivos o directorios
-     * @param archivos true para admitir archivos
-     * @param directorios true para admitir directorios
-     * @return devuelve archivo tipo File
-     */
-    public static File pedirArchivo(boolean archivos, boolean directorios) {
-        String resultado = "";
-        boolean fin = false;
-        JFileChooser selector = new JFileChooser();
-        if(archivos && directorios){
-                selector.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-                selector.setDialogTitle("Selecciona un Archivo o Directorio");
-        }else if(archivos){
-                selector.setFileSelectionMode(JFileChooser.FILES_ONLY);            
-                selector.setDialogTitle("Selecciona un Archivo");
-        }else if(directorios){
-                selector.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);            
-                selector.setDialogTitle("Selecciona un Directorio");
-        }
-                
-        File archivo;
-        do {
-            selector.showOpenDialog(selector);
-            archivo = selector.getSelectedFile();
-            
-            if ((archivo == null) || archivo.getName().equals("")) {
-                 Salidas.errorVacio();
-            } else {
-                fin = true;
-            }
-        } while (!fin);
-        return archivo;
-    } 
 }
