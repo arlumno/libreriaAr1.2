@@ -6,8 +6,8 @@
 package ar.csdam.pr.libreriaar;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -315,16 +315,16 @@ public class EntradasGui {
         boolean resultado = false;
         boolean fin = true;
         do {
-            int aux = JOptionPane.showConfirmDialog(null, mensaje,null,JOptionPane.YES_NO_OPTION);
-           
-                if (aux == 0) {
-                    resultado = true;
-                } else if (aux == 1 || aux == 2) { // 1 es No y 2 Cancelar
-                    resultado = false;
-                } else {
-                    fin = false;
-                    Salidas.errorReintentarIntroducir();
-                }
+            int aux = JOptionPane.showConfirmDialog(null, mensaje, null, JOptionPane.YES_NO_OPTION);
+
+            if (aux == 0) {
+                resultado = true;
+            } else if (aux == 1 || aux == 2) { // 1 es No y 2 Cancelar
+                resultado = false;
+            } else {
+                fin = false;
+                Salidas.errorReintentarIntroducir();
+            }
         } while (!fin);
         return resultado;
     }
@@ -375,5 +375,13 @@ public class EntradasGui {
             }
         } while (!fin);
         return archivo;
+    }
+
+    public static String pedirOpcion(String mensaje, ArrayList<String> listaOpciones) {
+        Object resultado;
+        resultado = JOptionPane.showInputDialog(null, mensaje,
+                null, JOptionPane.QUESTION_MESSAGE, null,
+                (Object[]) listaOpciones.toArray(), listaOpciones.get(0));
+        return resultado.toString();
     }
 }
