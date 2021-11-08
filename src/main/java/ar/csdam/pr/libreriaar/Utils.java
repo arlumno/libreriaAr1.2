@@ -64,4 +64,29 @@ public class Utils {
     public static double redondearDouble(double numero) {
         return redondearDouble(numero, (byte) 2);
     }
+    
+    /**
+     * Elimina espacios y guiones, y convierte en mayúsculas. Luego valida si el dni introducido es correcto. 
+     * @param dni numero de dni a instroducir
+     * @return devuelve un String el Dni formateado si es correcto, o "0" si no es.
+     */
+    public static String validarYFormatearDni(String dni){
+        String resultado = "0";        
+        
+        dni = dni.trim().replace("-", "").replace(" ", "").toUpperCase();
+        if(dni.length() == 9){
+            try{
+                int indiceLetra = Integer.parseInt(dni.substring(0, 8))%23;
+                String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
+                if(dni.charAt(8) == letrasDni.charAt(indiceLetra)){
+                    resultado = true;
+                }
+                //TODO falta indices
+            }catch(Exception e){
+                
+            }
+        }
+        
+        return resultado;
+    }
 }
