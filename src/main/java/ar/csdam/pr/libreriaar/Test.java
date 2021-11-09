@@ -35,7 +35,7 @@ public class Test {
         Menu menu = new Menu(lector);
         
         menu.setTituloMenu("Menú Vacunas");
-        menu.addOpcion("Listar todas las vacunas y mostrar todos sus datos");
+        menu.addOpcion("Fecha");
         menu.addOpcion("Buscar vacuna");
         menu.addOpcion("Agregar vacuna");
         menu.addOpcion("Eliminar vacuna");
@@ -59,7 +59,7 @@ public class Test {
                 System.out.println("Bye Bye!");
                 break;
             case 1:
-                System.out.println("Ha seleccionado la opción 1");
+                System.out.println(EntradasGui.pedirFecha("mensaje").toString());
                 break;
             case 2:
                 System.out.println("Ha seleccionado la opción 2");

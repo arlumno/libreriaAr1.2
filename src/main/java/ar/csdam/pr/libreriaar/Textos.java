@@ -15,6 +15,7 @@ public class Textos {
     static final String OPCION_SALIR = "\n0.- Salir";    
     static final String EXC_SIN_OPCIONES = " El menú no contiene opciones y requiere respuesta";    
     static final String NO_SELECCIONADO = "No se ha realizado ninguna selección";    
+    static final String FORMATO_FECHA = "\n fecha en formato dia/mes/año";    
     
     static String cabeceraMenu(String tituloMenu){
         return "\n[Menú " + tituloMenu + "]";

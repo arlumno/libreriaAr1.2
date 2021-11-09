@@ -79,7 +79,7 @@ public class Utils {
                 int indiceLetra = Integer.parseInt(dni.substring(0, 8))%23;
                 String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
                 if(dni.charAt(8) == letrasDni.charAt(indiceLetra)){
-                    resultado = true;
+                    resultado = dni;
                 }
                 //TODO falta indices
             }catch(Exception e){

@@ -6,7 +6,10 @@
 package ar.csdam.pr.libreriaar;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.InputMismatchException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -34,19 +37,19 @@ public class EntradasGui {
             try {
                 String aux = JOptionPane.showInputDialog(mensaje);
                 if (aux == null) {
-                    Salidas.errorReintentarIntroducir();
+                    SalidasGui.errorReintentarIntroducir();
                 } else {
                     resultado = Byte.parseByte(aux);
                     if (resultado < valorMin || resultado > valorMax) {
-                        Salidas.errorFueraRango();
-                        Salidas.errorReintentarIntroducir();
+                        SalidasGui.errorFueraRango();
+                        SalidasGui.errorReintentarIntroducir();
                     } else {
                         fin = true;
                     }
                 }
             } catch (InputMismatchException error) {
-                Salidas.errorTipo();
-                Salidas.errorReintentarIntroducir();
+                SalidasGui.errorTipo();
+                SalidasGui.errorReintentarIntroducir();
             }
         } while (!fin);
         return resultado;
@@ -90,20 +93,20 @@ public class EntradasGui {
             try {
                 String aux = JOptionPane.showInputDialog(mensaje);
                 if (aux == null) {
-                    Salidas.errorReintentarIntroducir();
+                    SalidasGui.errorReintentarIntroducir();
                 } else {
                     resultado = Integer.parseInt(aux);
 
                     if (resultado < valorMin || resultado > valorMax) {
-                        Salidas.errorFueraRango();
-                        Salidas.errorReintentarIntroducir();
+                        SalidasGui.errorFueraRango();
+                        SalidasGui.errorReintentarIntroducir();
                     } else {
                         fin = true;
                     }
                 }
             } catch (InputMismatchException error) {
-                Salidas.errorTipo();
-                Salidas.errorReintentarIntroducir();
+                SalidasGui.errorTipo();
+                SalidasGui.errorReintentarIntroducir();
             }
         } while (!fin);
         return resultado;
@@ -146,19 +149,19 @@ public class EntradasGui {
             try {
                 String aux = JOptionPane.showInputDialog(mensaje);
                 if (aux == null) {
-                    Salidas.errorReintentarIntroducir();
+                    SalidasGui.errorReintentarIntroducir();
                 } else {
                     resultado = Long.parseLong(aux);
                     if (resultado < valorMin || resultado > valorMax) {
-                        Salidas.errorFueraRango();
-                        Salidas.errorReintentarIntroducir();
+                        SalidasGui.errorFueraRango();
+                        SalidasGui.errorReintentarIntroducir();
                     } else {
                         fin = true;
                     }
                 }
             } catch (InputMismatchException error) {
-                Salidas.errorTipo();
-                Salidas.errorReintentarIntroducir();
+                SalidasGui.errorTipo();
+                SalidasGui.errorReintentarIntroducir();
             }
         } while (!fin);
         return resultado;
@@ -201,19 +204,19 @@ public class EntradasGui {
             try {
                 String aux = JOptionPane.showInputDialog(mensaje);
                 if (aux == null) {
-                    Salidas.errorReintentarIntroducir();
+                    SalidasGui.errorReintentarIntroducir();
                 } else {
                     resultado = Double.parseDouble(aux);
                     if (resultado < valorMin || resultado > valorMax) {
-                        Salidas.errorFueraRango();
-                        Salidas.errorReintentarIntroducir();
+                        SalidasGui.errorFueraRango();
+                        SalidasGui.errorReintentarIntroducir();
                     } else {
                         fin = true;
                     }
                 }
             } catch (InputMismatchException error) {
-                Salidas.errorTipo();
-                Salidas.errorReintentarIntroducir();
+                SalidasGui.errorTipo();
+                SalidasGui.errorReintentarIntroducir();
             }
         } while (!fin);
         return resultado;
@@ -258,27 +261,81 @@ public class EntradasGui {
             try {
                 resultado = JOptionPane.showInputDialog(mensaje);
                 if (resultado == null) {
-                    Salidas.errorReintentarIntroducir();
+                    SalidasGui.errorReintentarIntroducir();
                 } else {
                     if (resultado.length() < valorMin || (valorMax != null && resultado.length() > valorMax)) {
                         if (valorMax == null) {
-                            Salidas.errorVacio();
+                            SalidasGui.errorVacio();
                         } else {
-                            Salidas.errorFueraRango();
+                            SalidasGui.errorFueraRango();
                         }
-                        Salidas.errorReintentarIntroducir();
+                        SalidasGui.errorReintentarIntroducir();
                     } else {
                         fin = true;
                     }
                 }
             } catch (InputMismatchException error) {
-                Salidas.errorTipo();
-                Salidas.errorReintentarIntroducir();
+                SalidasGui.errorTipo();
+                SalidasGui.errorReintentarIntroducir();
+            }
+        } while (!fin);
+        return resultado;
+    }
+/**
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y valorMax
+     * opcionales.
+     *
+     * @param mensaje - texto de la ventana
+     * @param valorMin - valor mínimo, opcional
+     * @param valorMax - valor máximo opcional, (requiere valorMin).
+     * @return tipo float
+     */
+    public static float pedirFloat(String mensaje, float valorMin, float valorMax) {
+        float resultado = 0;
+        boolean fin = false;
+        do {
+            try {
+                String aux = JOptionPane.showInputDialog(mensaje);
+                if (aux == null) {
+                    SalidasGui.errorReintentarIntroducir();
+                } else {
+                    resultado = Float.parseFloat(aux);
+                    if (resultado < valorMin || resultado > valorMax) {
+                        SalidasGui.errorFueraRango();
+                        SalidasGui.errorReintentarIntroducir();
+                    } else {
+                        fin = true;
+                    }
+                }
+            } catch (InputMismatchException error) {
+                SalidasGui.errorTipo();
+                SalidasGui.errorReintentarIntroducir();
             }
         } while (!fin);
         return resultado;
     }
 
+    /**
+     * Metodo valorMin especificado y valorMax con máximo valor por defecto
+     *
+     * @param mensaje - texto de la ventana
+     * @param valorMin - valor mínimo, opcional
+     * @return tipo float
+     */
+    public static float pedirFloat(String mensaje, float valorMin) {
+        return pedirFloat(mensaje, valorMin, Float.MAX_VALUE);
+    }
+
+    /**
+     * Metodo valorMin y valorMax con mínimo y máximo valor por defecto
+     *
+     * @param mensaje - texto de la ventana
+     * @return tipo float
+     */
+    public static float pedirFloat(String mensaje) {
+        // el MIN_VALUE de float no es negativo, indica el numero POSITIVO mas pequeño con decimales
+        return pedirFloat(mensaje, Float.MAX_VALUE * -1, Float.MAX_VALUE);
+    }
     /**
      * Metodo valorMin y valorMax con mínimo y máximo valor por defecto
      *
@@ -323,7 +380,7 @@ public class EntradasGui {
                 resultado = false;
             } else {
                 fin = false;
-                Salidas.errorReintentarIntroducir();
+                SalidasGui.errorReintentarIntroducir();
             }
         } while (!fin);
         return resultado;
@@ -369,7 +426,7 @@ public class EntradasGui {
             archivo = selector.getSelectedFile();
 
             if ((archivo == null) || archivo.getName().equals("")) {
-                Salidas.errorVacio();
+                SalidasGui.errorVacio();
             } else {
                 fin = true;
             }
@@ -383,5 +440,38 @@ public class EntradasGui {
                 null, JOptionPane.QUESTION_MESSAGE, null,
                 (Object[]) listaOpciones.toArray(), listaOpciones.get(0));
         return resultado.toString();
+    }
+    
+    /**
+     * Pide por GUI un valor del tipo y rango especificado. valorMin y valorMax
+     * opcionales.
+     *
+     * @param mensaje - texto de la ventana
+     * @param valorMax - Longitud máxima del String
+     * @param valorMin - Longitud mínima del String, opcional (requiere
+     * valorMax).
+     * @return tipo String
+     */
+    public static Date pedirFecha(String mensaje) {
+        String fechaString;
+        Date resultado = null;
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        mensaje = mensaje + Textos.FORMATO_FECHA;
+        boolean fin = false;
+        do {
+            try {
+                fechaString = JOptionPane.showInputDialog(mensaje);
+                    resultado = formato.parse(fechaString);
+                if(resultado != null){
+                    fin = true;  
+                }
+            } catch (InputMismatchException error) {
+                SalidasGui.errorReintentarIntroducir();
+            } catch (ParseException error) {
+                SalidasGui.errorTipo();
+                SalidasGui.errorReintentarIntroducir();
+            }
+        } while (!fin);
+        return resultado;
     }
 }
