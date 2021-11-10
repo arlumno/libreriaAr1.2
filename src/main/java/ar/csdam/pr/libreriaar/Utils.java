@@ -68,10 +68,10 @@ public class Utils {
     /**
      * Elimina espacios y guiones, y convierte en mayúsculas. Luego valida si el dni introducido es correcto. 
      * @param dni numero de dni a instroducir
-     * @return devuelve un String el Dni formateado si es correcto, o "0" si no es.
+     * @return devuelve un String el Dni formateado si es correcto, o null si no es correcto.
      */
     public static String validarYFormatearDni(String dni){
-        String resultado = "0";        
+        String resultado = null;        
         
         dni = dni.trim().replace("-", "").replace(" ", "").toUpperCase();
         if(dni.length() == 9){
