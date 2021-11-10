@@ -40,6 +40,7 @@ public class Menu {
     private byte seleccion;
     private int intentos = 0;
     private boolean pausarEjecucion = false;
+    private String textoBotonSalir = "EXIT";
 
     /**
      * Menú de opciones. Limitado a 127 opciones. Se reserva el 0 para salir.
@@ -68,6 +69,13 @@ public class Menu {
      */
     public void setSalir(boolean salir) {
         this.salir = salir;
+        borrarMenu();
+    }
+    /**
+     * @param salir Indica si hay la opción de salir del menuString.
+     */
+    public void setTexoSalir(String salir) {
+        this.textoBotonSalir = salir;
         borrarMenu();
     }
 
@@ -244,7 +252,7 @@ public class Menu {
             y += alturaBoton + margenBoton;
         }   
         if(salir){
-            opcion = new JButton("EXIT");
+            opcion = new JButton(textoBotonSalir);
             opcion.setSize(anchoBoton, alturaBoton);
             opcion.setLocation(margenBoton, (y + alturaBoton));
             opcion.setBackground(Color.red);
