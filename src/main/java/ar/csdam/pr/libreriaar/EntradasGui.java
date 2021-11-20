@@ -47,7 +47,7 @@ public class EntradasGui {
                         fin = true;
                     }
                 }
-            } catch (InputMismatchException error) {
+            } catch (NumberFormatException error) {
                 SalidasGui.errorTipo();
                 SalidasGui.errorReintentarIntroducir();
             }
@@ -104,7 +104,7 @@ public class EntradasGui {
                         fin = true;
                     }
                 }
-            } catch (InputMismatchException error) {
+            } catch (NumberFormatException error) {
                 SalidasGui.errorTipo();
                 SalidasGui.errorReintentarIntroducir();
             }
@@ -159,7 +159,7 @@ public class EntradasGui {
                         fin = true;
                     }
                 }
-            } catch (InputMismatchException error) {
+            } catch (NumberFormatException error) {
                 SalidasGui.errorTipo();
                 SalidasGui.errorReintentarIntroducir();
             }
@@ -214,7 +214,7 @@ public class EntradasGui {
                         fin = true;
                     }
                 }
-            } catch (InputMismatchException error) {
+            } catch (NumberFormatException error) {
                 SalidasGui.errorTipo();
                 SalidasGui.errorReintentarIntroducir();
             }
@@ -258,30 +258,27 @@ public class EntradasGui {
         String resultado = "";
         boolean fin = false;
         do {
-            try {
-                resultado = JOptionPane.showInputDialog(mensaje);
-                if (resultado == null) {
+            resultado = JOptionPane.showInputDialog(mensaje);
+            if (resultado == null) {
+                SalidasGui.errorReintentarIntroducir();
+            } else {
+                if (resultado.length() < valorMin || (valorMax != null && resultado.length() > valorMax)) {
+                    if (valorMax == null) {
+                        SalidasGui.errorVacio();
+                    } else {
+                        SalidasGui.errorFueraRango();
+                    }
                     SalidasGui.errorReintentarIntroducir();
                 } else {
-                    if (resultado.length() < valorMin || (valorMax != null && resultado.length() > valorMax)) {
-                        if (valorMax == null) {
-                            SalidasGui.errorVacio();
-                        } else {
-                            SalidasGui.errorFueraRango();
-                        }
-                        SalidasGui.errorReintentarIntroducir();
-                    } else {
-                        fin = true;
-                    }
+                    fin = true;
                 }
-            } catch (InputMismatchException error) {
-                SalidasGui.errorTipo();
-                SalidasGui.errorReintentarIntroducir();
             }
+
         } while (!fin);
         return resultado;
     }
-/**
+
+    /**
      * Pide por GUI un valor del tipo y rango especificado. valorMin y valorMax
      * opcionales.
      *
@@ -307,7 +304,7 @@ public class EntradasGui {
                         fin = true;
                     }
                 }
-            } catch (InputMismatchException error) {
+            } catch (NumberFormatException error) {
                 SalidasGui.errorTipo();
                 SalidasGui.errorReintentarIntroducir();
             }
@@ -336,6 +333,7 @@ public class EntradasGui {
         // el MIN_VALUE de float no es negativo, indica el numero POSITIVO mas pequeño con decimales
         return pedirFloat(mensaje, Float.MAX_VALUE * -1, Float.MAX_VALUE);
     }
+
     /**
      * Metodo valorMin y valorMax con mínimo y máximo valor por defecto
      *
@@ -441,7 +439,7 @@ public class EntradasGui {
                 (Object[]) listaOpciones.toArray(), listaOpciones.get(0));
         return resultado.toString();
     }
-    
+
     /**
      * Pide por GUI un valor del tipo y rango especificado. valorMin y valorMax
      * opcionales.
@@ -461,9 +459,9 @@ public class EntradasGui {
         do {
             try {
                 fechaString = JOptionPane.showInputDialog(mensaje);
-                    resultado = formato.parse(fechaString);
-                if(resultado != null){
-                    fin = true;  
+                resultado = formato.parse(fechaString);
+                if (resultado != null) {
+                    fin = true;
                 }
             } catch (InputMismatchException error) {
                 SalidasGui.errorReintentarIntroducir();
